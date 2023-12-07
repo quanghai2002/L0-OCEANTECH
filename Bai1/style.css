@@ -1,0 +1,103 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --widthA1: 1000px;
+  --heightA1: 2000px;
+
+  --widthA2: 300px;
+  --heightA2: 200px;
+
+  --widthA3: 300px;
+  --heightA3: 200px;
+
+  --widthA4: 600px;
+  --heightA4: 260px;
+
+  --widthA5: 300px;
+  --heightA5: 160px;
+
+  --widthA6: 160px;
+  --heightA6: 100px;
+}
+.A1 {
+  width: var(--widthA1);
+  height: var(--heightA1);
+  border: 3px solid red;
+}
+
+.A2 {
+  position: fixed;
+  top: 0;
+  width: var(--widthA2);
+  height: var(--heightA2);
+  border: 3px solid rgb(189, 122, 7);
+}
+
+.A3 {
+  position: fixed;
+  bottom: 0;
+  width: var(--widthA3);
+  height: var(--heightA3);
+  border: 3px solid rgb(37, 7, 189);
+}
+
+.A4 {
+  width: var(--widthA4);
+  height: var(--heightA4);
+  border: 3px solid rgb(8, 169, 5);
+  margin-top: var(--heightA2);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.A5 {
+  position: sticky;
+  top: 100px;
+  margin-left: 200px;
+  width: var(--widthA5);
+  height: var(--heightA5);
+  border: 3px solid rgb(255, 0, 251);
+}
+
+.A6 {
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--widthA6);
+  height: var(--heightA6);
+  border: 3px solid rgb(255, 94, 0);
+}
+
+@media (max-width: 780px) {
+  :root {
+    --widthA1: 500px;
+    --heightA1: 1000px;
+
+    --widthA2: 150px;
+    --heightA2: 100px;
+
+    --widthA3: 150px;
+    --heightA3: 100px;
+
+    --widthA4: 150px;
+    --heightA4: 180px;
+
+    --widthA5: 150px;
+    --heightA5: 80px;
+
+    --widthA6: 80px;
+    --heightA6: 50px;
+  }
+
+  .A5 {
+    margin-left: 0px;
+  }
+}

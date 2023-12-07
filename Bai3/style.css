@@ -1,0 +1,257 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+}
+
+.wrapBtn--login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+.btn-login {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 44px;
+  border: none;
+  color: white;
+  background-color: #1dbfaf;
+  background-image: linear-gradient(70.06deg, #2cccff -5%, #22dfbf 106%);
+  box-shadow: 1px 1px 2px #1dbfaf;
+  transition: all 0.3s linear;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-login:hover {
+  cursor: pointer;
+  background-image: linear-gradient(70.06deg, #2cccff -106%, #22dfbf 5%);
+}
+
+/* wrap--modal */
+.hidden-modal {
+  display: none;
+}
+
+.wrap--modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(42 39 39 / 30%);
+}
+
+.modal--content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 380px;
+  background-color: white;
+  z-index: 3;
+  border-radius: 8px;
+  box-shadow: 0 0 3px 1px #ccc;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  overflow: hidden;
+}
+
+.iconClose {
+  font-size: 2.2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 12px 16px;
+  color: #b6abab;
+  transition: all 0.2s linear;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.iconClose:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.modal__content--title {
+  font-size: 2.8rem;
+  font-weight: 500;
+}
+
+.wrap-modal__inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.modal__input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #ddd;
+  gap: 16px;
+  padding: 10px 16px;
+  position: relative;
+  font-size: 1.3rem;
+}
+
+.modal__input--error {
+  border-color: red;
+}
+
+.waring-input {
+  position: absolute;
+  bottom: -19px;
+  left: 1px;
+  color: red;
+}
+
+.waring-input-hidden {
+  display: none;
+}
+
+.modal__input--icon {
+  font-size: 1.8rem;
+}
+
+.input-userName__iconClear,
+.input-password__iconClear {
+  font-size: 1.4rem;
+  color: #120e0e;
+  transition: all 0.1s linear;
+}
+
+.input-userName__iconClear:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.hiddenIconClearUserName,
+.hiddenIconClearPass {
+  display: none;
+}
+.input-password__iconClear:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.modal__input--text {
+  flex: 1;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+  caret-color: rgb(19, 111, 209);
+}
+
+.btn-submit-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 9.6px 0;
+  border: none;
+  border-radius: 3px;
+  background-color: #00ce81;
+  box-shadow: 0 0 1px #078f26;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s linear;
+}
+
+.btn-submit-form:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.btn-submit-form__text {
+  position: relative;
+}
+
+.btn-submit-form-icon {
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 2px;
+  border-color: white transparent white white;
+  animation: spinLoading 1s linear infinite;
+}
+
+@keyframes spinLoading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#btn-submit-form__loading {
+  opacity: 0.8;
+}
+.hiddenSubmitForm {
+  display: none;
+  user-select: none;
+}
+
+.forgot-password {
+  font-size: 1.6rem;
+  color: #ada6b7;
+  background-color: rgb(212 216 222 / 60%);
+  user-select: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+}
+
+@media (max-width: 739px) {
+  .modal--content {
+    width: 350px;
+    height: 350px;
+  }
+
+  .modal__input--text {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal--content {
+    width: 300px;
+    height: 350px;
+  }
+
+  .modal__input--text {
+    font-size: 1.3rem;
+    max-width: 130px;
+  }
+}

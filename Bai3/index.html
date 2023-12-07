@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="wrapBtn--login">
+        <button class="btn-login">Đăng nhập hệ thống</button>
+      </div>
+
+      <!-- modal-login -->
+      <div class="wrap--modal hidden-modal">
+        <div class="overlay"></div>
+        <form class="modal--content">
+          <h1 class="modal__content--title">Member Login</h1>
+          <div class="wrap-modal__inputs">
+            <div class="modal__input">
+              <label for="input-userName">
+                <i class="fa-solid fa-user modal__input--icon"></i>
+              </label>
+              <input
+                placeholder="Username"
+                class="modal__input--text"
+                id="input-userName"
+              />
+              <i
+                class="fa-solid fa-xmark input-userName__iconClear hiddenIconClearUserName"
+              ></i>
+              <span class="waring-input waring-input-hidden"></span>
+            </div>
+
+            <div class="modal__input">
+              <label for="input-password">
+                <i class="fa-solid fa-lock modal__input--icon"></i>
+              </label>
+              <input
+                placeholder="Password"
+                class="modal__input--text"
+                id="input-password"
+                type="password"
+              />
+              <i
+                class="fa-solid fa-xmark input-password__iconClear hiddenIconClearPass"
+              ></i>
+              <span class="waring-input waring-input-hidden"></span>
+            </div>
+
+            <button
+              type="submit"
+              class="btn-submit-form hiddenSubmitForm"
+              id="btn-submit-form__loading"
+            >
+              <div class="btn-submit-form-icon"></div>
+              <p class="btn-submit-form__text">Login...</p>
+            </button>
+
+            <button type="submit" class="btn-submit-form" id="btn-submit-form">
+              <p class="btn-submit-form__text">Login</p>
+            </button>
+          </div>
+
+          <!-- icon close -->
+          <i class="fa-solid fa-xmark iconClose"></i>
+
+          <!-- forgot password -->
+          <div class="forgot-password">
+            <p>Forgot Password?</p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
