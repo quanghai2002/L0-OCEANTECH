@@ -1,0 +1,42 @@
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-title {
+  color: #ffce1b;
+}
+
+.content-item {
+  background-image: url("./img/bai9_2.png");
+  padding-top: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content-item-2 {
+  background-image: url("./img/bai9_4.png");
+  padding-top: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content-item-3 {
+  background-image: url("./img/bai9_1.png");
+  padding-top: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content-item-4 {
+  background-image: url("./img/bai9_3.png");
+  padding-top: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
