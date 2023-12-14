@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div id="root">
+      <!-- header -->
+      <header class="header shadow bg-white">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary container py-0">
+          <div class="container bg-white header-nav py-2">
+            <a
+              class="navbar-brand header-logo d-flex align-items-center"
+              href="./index.html"
+            >
+              <img src="./img/nike.png" alt="icon" class="header-logo__img" />
+              <h3 class="header-logo__text mb-0">Nike</h3>
+            </a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarNav"
+            >
+              <ul class="navbar-nav gap-5">
+                <li class="nav-item header-nav-item">
+                  <a
+                    class="nav-link active text-uppercase header-nav-item__link px-0"
+                    aria-current="page"
+                    href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item header-nav-item">
+                  <a
+                    class="nav-link text-uppercase header-nav-item__link px-0"
+                    href="#"
+                    >About</a
+                  >
+                </li>
+                <li class="nav-item header-nav-item">
+                  <a
+                    class="nav-link text-uppercase header-nav-item__link px-0"
+                    href="#"
+                    >Bills</a
+                  >
+                </li>
+
+                <li class="nav-item btn-swit-cart">
+                  <div
+                    type="button"
+                    class="btn btn-primary position-relative heder-btn__cart px-1"
+                  >
+                    <i class="bi bi-cart3 heder-btn__cart--icon"></i>
+                    <span
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger heder-btn__cart--badge"
+                    >
+                      10
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main class="container main-cart mt-4 px-0">
+        <!-- khi so luong don hang > 0 -->
+        <div class="wrap-cart">
+          <!-- title main cart -->
+          <div class="row main-cart-header">
+            <div class="col col-5">
+              <h5 class="main-cart-header__text">Product Name</h5>
+            </div>
+            <div class="col col-2 main-cart-header__text">
+              <h5 class="main-cart-header__text text-center">Quantity</h5>
+            </div>
+            <div class="col main-cart-header__text">
+              <h5 class="main-cart-header__text">Subtotal</h5>
+            </div>
+            <div class="col main-cart-header__text">
+              <h5 class="main-cart-header__text">Total</h5>
+            </div>
+            <div class="col main-cart-header__text">
+              <h5 class="main-cart-header__text">Clear Cart</h5>
+            </div>
+          </div>
+
+          <!-- content cart -->
+          <div class="wrap-content-cart mt-3">
+            <!-- render theo du lieu trong localstorage -->
+          </div>
+
+          <!-- footer cart -->
+          <div class="row align-items-center mt-4 footer-cart">
+            <!-- render footer cart theo localstorage -->
+          </div>
+        </div>
+
+        <!-- cart null khi khong co don hang nao -->
+        <div class="wrap-cart-null d-none">
+          <div class="row">
+            <div class="col text-center">
+              <img src="./img/empty-cart.png" alt="anh" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a class="btn btn-outline-danger" href="./index.html">
+                <i class="bi bi-arrow-left me-2"></i>Back to Shopping</a
+              >
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- modal khi click buy cart -->
+      <div
+        class="modal fade wrap-modal-buy-shoe"
+        id="exampleModal"
+        tabindex="-1"
+        aria-hidden="true"
+        style="display: none"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Thông tin người mua</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <!-- họ và tên -->
+                <div>
+                  <label for="ho" class="col-form-label"
+                    >Họ và tên<strong class="modal-label-text">*</strong></label
+                  >
+                  <div
+                    class="d-md-flex align-items-md-center gap-3 wrap-input-modal-username"
+                  >
+                    <div class="flex-grow-1 wrap-input-modal">
+                      <input
+                        type="text"
+                        class="form-control modal-input-item modal-input-ho"
+                        id="ho"
+                        placeholder="Họ"
+                        required
+                      />
+                      <span
+                        class="input-modal-message input-message-ho ps-1 d-none"
+                        >Nhập họ của bạn!</span
+                      >
+                    </div>
+                    <div class="flex-grow-1 wrap-input-modal">
+                      <input
+                        type="text"
+                        class="form-control modal-input-item modal-input-ten"
+                        id="ten"
+                        placeholder="Tên"
+                        required
+                      />
+                      <span
+                        class="input-modal-message ps-1 input-message-ten d-none"
+                        >Nhập tên của bạn!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- email -->
+                <div>
+                  <label for="email" class="col-form-label"
+                    >Email<strong class="modal-label-text">*</strong></label
+                  >
+                  <div class="flex-grow-1 wrap-input-modal">
+                    <input
+                      type="email"
+                      class="form-control modal-input-item modal-input-email"
+                      id="email"
+                      placeholder="Email"
+                    />
+                    <span
+                      class="input-modal-message ps-1 input-message-email d-none"
+                      >Nhập địa chỉ email !</span
+                    >
+                  </div>
+                </div>
+
+                <!-- số điện thoại -->
+                <div>
+                  <label for="phone" class="col-form-label"
+                    >Số điện thoại<strong class="modal-label-text"
+                      >*</strong
+                    ></label
+                  >
+                  <div class="flex-grow-1 wrap-input-modal">
+                    <input
+                      type="number"
+                      class="form-control modal-input-item modal-input-phone"
+                      id="phone"
+                      placeholder="Số điện thoại"
+                    />
+                    <span
+                      class="input-modal-message ps-1 input-message-phone d-none"
+                      >Nhập số điện thoại</span
+                    >
+                  </div>
+                </div>
+
+                <!-- địa chỉ -->
+                <div>
+                  <label class="col-form-label"
+                    >Địa chỉ<strong class="modal-label-text">*</strong></label
+                  >
+                  <div
+                    class="d-md-flex align-items-md-center gap-3 wrap-modal-input-address"
+                  >
+                    <!-- Tỉnh Thành Phố -->
+                    <div class="wrap-input-select-thanhpho">
+                      <select
+                        class="form-select form-select-sm mb-3 input-select-thanhpho select-thanhpho"
+                        aria-label="Large select example"
+                      >
+                        <!-- render theo API  -->
+                      </select>
+                      <span
+                        class="waring-message-address ps-1 message-select-thanhpho d-none"
+                        >Vui lòng chọn Tỉnh thành phố!</span
+                      >
+                    </div>
+
+                    <!-- Quận Huyện -->
+                    <div class="wrap-input-select-thanhpho">
+                      <select
+                        class="form-select form-select-sm mb-3 input-select-thanhpho select-quanhuyen"
+                        aria-label="Large select example"
+                        disabled
+                      >
+                        <option selected value="0">--Chọn Quận/Huyện--</option>
+                      </select>
+
+                      <span
+                        class="waring-message-address ps-1 message-select-quanhuyen d-none"
+                        >Vui lòng chọn quận huyện!</span
+                      >
+                    </div>
+
+                    <!-- Phường Xã -->
+                    <div class="wrap-input-select-thanhpho">
+                      <select
+                        class="form-select form-select-sm mb-3 input-select-thanhpho select-phuongxa"
+                        disabled
+                        aria-label="Large select example"
+                      >
+                        <option selected value="0">--Chọn Phường/Xã--</option>
+                      </select>
+                      <span
+                        class="waring-message-address ps-1 message-select-phuongxa d-none"
+                        >Vui lòng chọn phường xã!</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="wrap-input-modal">
+                    <input
+                      type="text"
+                      class="form-control modal-input-item modal-input-sonha"
+                      placeholder="Số nhà"
+                    />
+                    <span
+                      class="input-modal-message ps-1 input-message-sonha d-none"
+                      >Vui lòng nhập số nhà</span
+                    >
+                  </div>
+                </div>
+                <!-- Lời nhắn -->
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label"
+                    >Lời nhắn</label
+                  >
+                  <textarea
+                    class="form-control modal-input-loinhan"
+                    id="message-text"
+                    style="height: 71px"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Hủy
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary btn-confirm-form-buyshoe-cart"
+              >
+                Xác nhận
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var myModal = new bootstrap.Modal(
+          document.getElementById("exampleModal")
+        );
+        myModal.show();
+      });
+    </script>
+  </body>
+</html>

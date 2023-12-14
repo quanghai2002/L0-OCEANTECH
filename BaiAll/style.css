@@ -146,8 +146,12 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 40px;
+  max-height: 40px;
 }
-
+.main-item__price {
+  color: red;
+}
 .main-item__price,
 .main-item__quantity {
   flex: 1;
@@ -173,4 +177,241 @@
 
 .main-item__icon--cart:hover {
   background-color: rgb(131, 233, 124);
+}
+
+/* cart html */
+/* giỏ hàng  */
+.main-cart {
+}
+
+.main-cart-header {
+}
+
+.main-cart-header__text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.wrap-content-cart {
+}
+
+.content-cart-item {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 14px 0;
+  transition: all 0.2s linear;
+}
+.content-cart-item:hover {
+  background-color: rgb(233 239 234);
+}
+
+.content-cart-item__img {
+  width: 80px;
+  object-fit: contain;
+}
+
+.content-cart-item__name {
+  font-size: 18px;
+  padding-bottom: 4px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.content-cart-item__quantity {
+  font-size: 14px;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content-cart-item--info {
+  max-width: 80%;
+}
+
+.content-cart-item__btn-remove {
+  font-size: 19px;
+  font-weight: 500;
+  padding: 10px 16px;
+  transition: all 0.1s linear;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.content-cart-item__btn-remove:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.content-cart-item__btn-add {
+  font-size: 19px;
+  font-weight: 500;
+  padding: 10px 16px;
+  transition: all 0.1s linear;
+  -webkit-tap-highlight-color: transparent;
+}
+.content-cart-item__btn-add:hover {
+  cursor: pointer;
+  color: rgb(7, 190, 29);
+}
+
+.content-cart-item__btn-quantity {
+  font-size: 19px;
+  font-weight: 400;
+  padding: 10px 16px;
+}
+
+.content-cart-item__one-shoe {
+  max-width: 162px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.content-cart-item__all-price-shoe {
+  max-width: 162px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: red;
+  word-break: break-all;
+}
+
+.content-cart-item__btn-clear {
+  font-size: 21px;
+  transition: all 0.1s linear;
+  position: relative;
+}
+
+.content-cart-item__btn-clear:hover {
+  cursor: pointer;
+  color: red;
+}
+.popup-delete-cart {
+  position: absolute;
+  left: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f1e6e6;
+  width: 200px;
+  text-align: center;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.popup-delete-cart__btn {
+  font-size: 14px;
+}
+
+.popup-delete-cart__text {
+  font-size: 14px;
+}
+
+.footer-priceAll-shoe {
+  color: red;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer-btn-buyShoe {
+}
+
+.alert-message-add-cart,
+.alert-message-add-error-cart {
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+}
+
+.alert-message-add-cart__icon-close,
+.alert-message-add-error-cart__icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 6px;
+  font-size: 18px;
+  color: #000;
+  transition: all 0.1s linear;
+}
+
+.alert-message-add-cart__icon-close:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.alert-message-add-error-cart__icon-close:hover {
+  cursor: pointer;
+  color: red;
+}
+
+/* wrap-modal-buy-shoe */
+.wrap-modal-buy-shoe .modal-dialog {
+  max-width: 650px;
+}
+
+.modal-label-text {
+  color: red;
+}
+
+/* họ tên */
+
+.wrap-input-modal {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.modal-input-error {
+  border-color: red;
+}
+.modal-input-error:focus {
+  border-color: red;
+  box-shadow: 0 0 0 0.25rem rgba(234, 65, 65, 0.25);
+}
+
+.wrap-input-modal-ten {
+}
+.input-modal-message {
+  position: absolute;
+  left: 0;
+  bottom: -21px;
+  color: red;
+  font-size: 14px;
+}
+
+.modal-input-item {
+}
+
+/* địa chỉ */
+.wrap-modal-input-address {
+}
+
+.wrap-input-select-thanhpho {
+  position: relative;
+  margin-bottom: 20px;
+}
+.input-select-thanhpho {
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
+}
+
+.waring-message-address {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  color: red;
+  font-size: 14px;
 }
