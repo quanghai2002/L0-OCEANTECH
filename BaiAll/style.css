@@ -415,3 +415,61 @@
   color: red;
   font-size: 14px;
 }
+
+/* wrap-all-order */
+.wrap-all-order {
+}
+
+.all-order-item {
+  margin: 13px 0;
+  padding: 13px 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.all-order-item__col1 {
+}
+
+.all-order-item__col1--details {
+  color: rgb(10, 104, 255);
+  font-weight: 500;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.all-order-item__col1--details:hover {
+  opacity: 0.8;
+}
+
+.all-order-item__col6 {
+  color: red;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.all-order-item__col6:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.all-order-item__col6 i {
+  margin-left: 16px;
+}
+
+.wrap-listShoe-Order {
+  margin: 16px 0;
+  padding: 10px;
+  border: 1px dashed #1171d7;
+  border-radius: 3px;
+}
+.wrap-listShoe-Order img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.wrap-listShoe-Order h6 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

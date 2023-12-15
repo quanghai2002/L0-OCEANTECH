@@ -10,7 +10,11 @@ Bài 2
 
 
 */
-const listData = [
+const listOldDataStorage = JSON.parse(localStorage.getItem('keyLocalStorageListSP'));
+
+
+
+const listData = listOldDataStorage ? listOldDataStorage : [
   {
     id: 1,
     name: "Giày Nike Metcon 9 Nam - Camo",
@@ -593,7 +597,29 @@ Bài 8:
        + thất bại: thông báo lỗi cho người dùng
 */
 
+
+// ---BAI 11 ----
+/*
+Bài 11:
+ -   Validate các ô nhập liệu (họ, tên, số điện thoại, email, địa chỉ...) , nếu người dùng nhập sai, hiển thị thông báo yêu cầu nhập lại.
+ -   Xử lý dữ liệu nhập vào từ người dùng
+     +  Họ tên: họ + tên,
+     +  Địa chỉ nhận hàng: địa chỉ chi tiết, + xã ,+ huyện,+ tỉnh 
+ -   Tạo Object để chứa thông tin người dùng và thông tin đơn hàng (sử dụng function đã tạo ở bài 10 để tạo id , ngày mua : ngày hiện tại )
+
+*/
 //
+
+// const fromSubmit = document.getElementById('exampleModal');
+// if (fromSubmit) {
+//   fromSubmit.addEventListener('submit', (event) => {
+//     console.log('form submit');
+//     event.preventDefault();
+//   });
+// }
+
+
+
 // modal-input-error
 // ho
 const inputho = document.querySelector('.modal-input-ho');
@@ -893,7 +919,9 @@ axios.get('https://provinces.open-api.vn/api/p').then((response) => {
                           --Chọn Tỉnh/Thành Phố--
                         </option>`);
 
-  selectThanhPho.innerHTML = htmlDataThanhPho.join('');
+  if (selectThanhPho) {
+    selectThanhPho.innerHTML = htmlDataThanhPho.join('');
+  };
 
 }).catch((err) => {
   console.log('lay du lieu that bai:', err)
@@ -988,97 +1016,380 @@ if (selectPhuongXa) {
   });
 };
 
+
+
 // khi click nut đồng ý xác nhận đặt hàng --
 const btnConfirmBuyShoe = document.querySelector('.btn-confirm-form-buyshoe-cart');
-btnConfirmBuyShoe.addEventListener('click', () => {
+if (btnConfirmBuyShoe) {
 
-  const dataFormValidation = {};
+  btnConfirmBuyShoe.addEventListener('click', (e) => {
+    e.preventDefault();
 
-  const listAllInputForm = document.querySelectorAll('.modal-input-item');
-  const listAllMessageWaring = document.querySelectorAll('.input-modal-message');
+    const listAllInputForm = document.querySelectorAll('.modal-input-item');
+    const listAllMessageWaring = document.querySelectorAll('.input-modal-message');
 
-  const listAllSelectFrom = document.querySelectorAll('.input-select-thanhpho');
-  const listAllMessageSelect = document.querySelectorAll('.waring-message-address');
-  // kiem tra xem da nhap ho ten ... chua
-  // console.log(dataFormUser);
+    const listAllSelectFrom = document.querySelectorAll('.input-select-thanhpho');
+    const listAllMessageSelect = document.querySelectorAll('.waring-message-address');
+    // kiem tra xem da nhap ho ten ... chua
+    // console.log(dataFormUser);
 
-  if (dataFormUser.ho.trim() === '' && dataFormUser.ten.trim() === '' && dataFormUser.email.trim() === '' && dataFormUser.phone.trim() === '' && dataFormUser.sonha.trim() === '') {
-    listAllInputForm.forEach((item) => {
-      item.classList.add('modal-input-error');
-    });
-    listAllMessageWaring.forEach((item) => {
-      item.classList.remove('d-none');
-    })
-  } else {
-    if (dataFormUser.ho.trim() === '') {
-      inputMessage.classList.remove('d-none');
-      inputho.classList.add('modal-input-error');
+    if (dataFormUser.ho.trim() === '' && dataFormUser.ten.trim() === '' && dataFormUser.email.trim() === '' && dataFormUser.phone.trim() === '' && dataFormUser.sonha.trim() === '' && dataAddressUser?.thanhpho.trim() === '' && dataAddressUser?.quanhuyen.trim() === '' && dataAddressUser?.phuongxa.trim() === '') {
+      listAllInputForm.forEach((item) => {
+        item.classList.add('modal-input-error');
+      });
+      listAllMessageWaring.forEach((item) => {
+        item.classList.remove('d-none');
+      });
+
+      listAllSelectFrom.forEach((item) => {
+        item.classList.add('modal-input-error');
+      });
+      listAllMessageSelect.forEach((item) => {
+        item.classList.remove('d-none');
+      })
     } else {
-      if (dataFormUser.ten.trim() === '') {
-        inputMessageTen.classList.remove('d-none');
-        inputten.classList.add('modal-input-error');
+      if (dataFormUser.ho.trim() === '') {
+        inputMessage.classList.remove('d-none');
+        inputho.classList.add('modal-input-error');
+        inputho.focus();
       } else {
-        if (dataFormUser.email.trim() === '') {
-          inputemail.classList.add('modal-input-error');
-          inputMessageEmail.classList.remove('d-none');
+        if (dataFormUser.ten.trim() === '') {
+          inputMessageTen.classList.remove('d-none');
+          inputten.classList.add('modal-input-error');
+          inputten.focus();
         } else {
-          if (dataFormUser.phone.trim() === '') {
-            inputPhone.classList.add('modal-input-error');
-            inputMessagePhone.classList.remove('d-none');
+          if (dataFormUser.email.trim() === '') {
+            inputemail.classList.add('modal-input-error');
+            inputMessageEmail.classList.remove('d-none');
+            inputemail.focus();
           } else {
-            if (dataFormUser.sonha.trim() === '') {
-              inputMessageSonha.classList.remove('d-none');
-              inputSonha.classList.add('modal-input-error');
-            } else {
-              // du lieu sau khi da validation het
-              // console.log(dataFormUser);
+            const isValidEmail = emailRegex.test(dataFormUser.email.trim());
+            if (isValidEmail) {
+              if (dataFormUser.phone.trim() === '') {
+                inputPhone.classList.add('modal-input-error');
+                inputMessagePhone.classList.remove('d-none');
+                inputPhone.focus();
+              } else {
+                // check nhap dung so dien thoai chua
+                const isValidPhone = phoneRegex.test(dataFormUser.phone.trim());
+                if (isValidPhone) {
+                  if (dataFormUser.sonha.trim() === '') {
+                    inputMessageSonha.classList.remove('d-none');
+                    inputSonha.classList.add('modal-input-error');
+                    inputSonha.focus();
+                  } else {
+                    // kiem tra xem da co chi chi giao hang chua
+                    if (dataAddressUser?.thanhpho.trim() === '') {
+                      messageThanhPho.classList.remove('d-none');
+                      selectThanhPho.classList.add('modal-input-error');
+                      selectThanhPho.focus();
+                    } else {
+                      if (dataAddressUser?.quanhuyen.trim() === '') {
+                        messageQuanHuyen.classList.remove('d-none');
+                        selectQuanHuyen.classList.add('modal-input-error');
+                        selectQuanHuyen.focus();
+                      } else {
+                        if (dataAddressUser?.phuongxa.trim() === '') {
+                          messagePhuongXa.classList.remove('d-none');
+                          selectPhuongXa.classList.add('modal-input-error');
+                          selectPhuongXa.focus();
+                        } else {
+                          // data form validation
+                          let dataFormValidaiton = {
+                            hoten: `${dataFormUser?.ho} ${dataFormUser?.ten}`,
+                            address: `${dataFormUser?.sonha}, ${dataAddressUser?.phuongxa}, ${dataAddressUser?.quanhuyen}, ${dataAddressUser?.thanhpho}`,
+                            email: dataFormUser?.email,
+                            phone: dataFormUser?.phone,
+                            loinhan: dataFormUser?.loinhan ? dataFormUser?.loinhan : ''
+                          };
+                          const infoCartStorage = JSON.parse(localStorage.getItem('keyLocalStorageItemCart'));
+                          const totalSumOrder = infoCartStorage?.reduce((total, item) => {
+                            return (item?.soluongmua * item?.price) + total;
+                          }, 0);
 
-              const dataFormValidation = dataFormUser;
-              // console.log(dataFormValidation);
-              localStorage.setItem('dataBuyShoeCart', JSON.stringify(dataFormValidation));
+
+                          // dudataFormValidaiton
+                          const dataOrderShoe = {
+                            id: generateRandomId(),
+                            ...dataFormValidaiton,
+                            products: infoCartStorage,
+                            total: totalSumOrder,
+                            date: new Date()
+                          };
+
+                          // console.log('dat order:', dataOrderShoe);
+                          // luu don hang len json-server
+                          addOrderJsonServer(dataOrderShoe);
+                        }
+                      }
+                    }
+                  }
+                } else {
+                  inputPhone.classList.add('modal-input-error');
+                  inputMessagePhone.textContent = "Nhập đúng định dạng số điện thoại!";
+                  inputMessagePhone.classList.remove('d-none');
+                  inputPhone.focus();
+                }
+              }
+            } else {
+              inputemail.classList.add('modal-input-error');
+              inputMessageEmail.textContent = "Nhập đúng định dạng email !";
+              inputMessageEmail.classList.remove('d-none');
+              inputemail.focus();
             }
+
           }
         }
       }
-    }
+    };
+
+  });
+
+
+};
+
+
+// -----------BAI 10 --------
+/*
+ Bài 10
+ - Viết function tạo ID ngẫu nhiên 
+ - Kiểm tra ID 
+ - Function sử dụng Recursion hoặc Closures
+*/
+function generateRandomId() {
+  const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const idLength = 8;
+
+  function generateIdRecursive(currentId) {
+    if (currentId.length === idLength) {
+      return currentId;
+    };
+
+    const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+    return generateIdRecursive(currentId + randomCharacter);
   }
 
-  // kiem tra xem da nhap dia chi giao hang chua
-  if (dataAddressUser?.thanhpho.trim() === '' && dataAddressUser?.quanhuyen.trim() === '' && dataAddressUser?.phuongxa.trim() === '') {
-    listAllSelectFrom.forEach((item) => {
-      item.classList.add('modal-input-error');
+  return generateIdRecursive('');
+};
+
+
+
+// ----BAI 13 ----
+
+/*
+Bài 13:
+ - Tạo 1 fake api bằng json server để lưu danh sách đơn hàng.
+ - Đã tạo chạy npm start để start server json-server.
+*/
+
+// ----BAI 14 ---
+/*
+Bài 14:
+ - Tạo các function xử lý lấy , thêm , xóa đơn hàng từ api danh sách đơn hàng (sử dụng các method get, post, put, delete, ..)
+ - Kiểm tra response : thông báo thất bại, thông báo có lỗi khi xảy ra
+ - Yêu cầu: các hàm được tạo sử dụng Arrow function
+
+*/
+function addOrderJsonServer(data) {
+  const productsBuyShoes = data?.products?.map((item) => {
+    return {
+      id: item?.id,
+      soluongmua: item?.soluongmua
+    }
+  });
+
+  // xoa gio hang
+  localStorage.setItem('keyLocalStorageItemCart', JSON.stringify([]));
+
+  // giam so luong cac san pham da mua
+  const dataAllShoes = JSON.parse(localStorage.getItem('keyLocalStorageListSP'));
+
+  dataAllShoes.forEach((item) => {
+    const soluongmua = productsBuyShoes.find((value) => {
+      return value?.id === item?.id;
+    })?.soluongmua;
+
+    if (soluongmua) {
+      item.soluong = item.soluong >= soluongmua ? item.soluong - soluongmua : 0
+    }
+  });
+
+  localStorage.setItem('keyLocalStorageListSP', JSON.stringify(dataAllShoes));
+
+
+  axios.post('http://localhost:3000/order', data).then((response) => {
+    console.log('luu don hang thanh cong', response);
+  }).catch((err) => {
+    console.log('luu don hang that bai', err);
+  });
+};
+
+// delete one older
+const deleteOneOrder = async (data) => {
+
+  try {
+    const oldProducts = data?.products;
+    const dataListShoe = JSON.parse(localStorage.getItem('keyLocalStorageListSP'));
+
+    dataListShoe.forEach((item) => {
+      const quantity = oldProducts.find((value) => {
+        return value.id === item.id;
+      })?.soluongmua
+
+      if (quantity) {
+        item.soluong = item.soluong + quantity
+      };
     });
-    listAllMessageSelect.forEach((item) => {
-      item.classList.remove('d-none');
-    })
-  } else {
-    if (dataAddressUser?.thanhpho.trim() === '') {
-      messageThanhPho.classList.remove('d-none');
-      selectThanhPho.classList.add('modal-input-error');
-    } else {
-      if (dataAddressUser?.quanhuyen.trim() === '') {
-        messageQuanHuyen.classList.remove('d-none');
-        selectQuanHuyen.classList.add('modal-input-error');
-      } else {
 
-        if (dataAddressUser?.phuongxa.trim() === '') {
-          messagePhuongXa.classList.remove('d-none');
-          selectPhuongXa.classList.add('modal-input-error');
-        } else {
-          // data address after validaiton
-          console.log(dataAddressUser);
-
-          const oldDataBuySHoe = JSON.parse(localStorage.getItem('dataBuyShoeCart'));
-          const newDataBuyShoes = {
-            ...oldDataBuySHoe,
-            ...dataAddressUser
-          };
-          localStorage.setItem('dataBuyShoeCart', JSON.stringify(newDataBuyShoes));
-        }
-      }
-    }
+    localStorage.setItem('keyLocalStorageListSP', JSON.stringify(dataListShoe));
+    await axios.delete(`http://localhost:3000/order/${data.id}`);
+  } catch (error) {
+    console.log(error);
   }
+};
+
+
+// get all order
+async function gelAllOrder() {
+  try {
+    const data = await axios.get('http://localhost:3000/order');
+
+    // BAI 16
+    const wrapAllSanPhamDaMua = document.querySelector('.wrap-all-order');
+
+
+    if (data?.data?.length > 0) {
+
+      const dataHtmlOldOrder = data?.data?.map((item) => {
+        const date = new Date(item?.date);
+        return `<div class="row all-order-item align-items-center">
+            <div class="col all-order-item__col1">
+              <p class="mb-0">${item?.id}</p>
+              <a
+                class="all-order-item__col1--details d-flex align-items-center text-decoration-none"
+                data-bs-toggle="collapse"
+                href="#${item.id}"
+                role="button"
+                aria-expanded="false"
+                
+              >
+                <p class="mb-0">Chi tiết đơn hàng</p>
+                <i class="bi bi-caret-down"></i>
+              </a>
+            </div>
+            <div class="col all-order-item__col2">
+              <p class="mb-0">
+               ${item?.hoten}
+              </p>
+            </div>
+            <div class="col all-order-item__col3">
+              <p class="mb-0">${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} </p>
+            </div>
+            <div class="col all-order-item__col4">
+              <p class="mb-0 text-break">
+                ${item?.products?.length}
+              </p>
+            </div>
+            <div class="col all-order-item__col5">
+              <p class="mb-0 text-break text-danger">
+                ${item?.total.toLocaleString('vn-VN')}đ
+              </p>
+            </div>
+            <div class="col all-order-item__col6" onclick='deleteOneOrder(${JSON.stringify(item)})'>
+              <i class="bi bi-x-square"></i>
+            </div>
+            
+             <!-- hien thi chi tiet don hang -->
+            <div class="collapse mt-3" id="${item.id}">
+              <div class="card card-body">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-break">Mã đơn hàng:${item.id}</h6>
+                    <p class="mb-2 text-break">
+                      Ngày đặt hàng:<strong>${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}</strong>
+                    </p>
+                    <p class="mb-2 text-break">
+                      Người nhận:<strong>${item.hoten}</strong>
+                    </p>
+                    <p class="mb-2 text-break">
+                      Đia chỉ:<strong>${item.address}</strong>
+                    </p>
+                    <p class="mb-2 text-break">
+                      Số điện thoại:<strong>${item.phone}</strong>
+                    </p>
+                    <p class="mb-2 text-break">
+                      Email:<strong>${item.email}</strong>
+                    </p>
+                    <p class="mb-2 text-break">Lời nhắn:<strong>${item.loinhan ? item.loinhan : ""}</strong></p>
+                    <p class="mb-2 text-break">
+                      Thành tiền:<strong class="text-danger">${item.total.toLocaleString('vn-VN')}đ</strong>
+                    </p>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-break mb-2">Danh sách sản phẩm</h6>
+                   
+                      
+                    ${item.products.map((value) => {
+          return `   
+                      <div
+                      class="wrap-listShoe-Order d-flex align-items-center gap-2"
+                    >
+                       <img
+                         src="${value.image}"
+                         alt="anh"
+                       />
+                       
+                       <div>
+                         <h6 class="mb-2 text-break">
+                           ${value.name}
+                         </h6>
+                         <p class="mb-0 text-break">
+                           Số lượng:<strong class="text-break">${value?.soluongmua}</strong>
+                         </p>
+                       </div>
+                     </div>
+                       `
+        }).join('')}
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`
+      }).join('');
+
+      if (wrapAllSanPhamDaMua) {
+        wrapAllSanPhamDaMua.innerHTML = dataHtmlOldOrder;
+      };
+
+
+    } else {
+      if (wrapAllSanPhamDaMua) {
+        wrapAllSanPhamDaMua.innerHTML = ` 
+        <div class="row all-order-item align-items-center">
+            <h2 class="text-center text-danger">Chưa có đơn hàng nào</h2>
+          </div>
+        `
+      };
+    }
+
+  } catch (error) {
+    console.log('ko lay duoc du lieu don hang', error)
+  }
+};
+gelAllOrder()
+
+
+// -------BAI 16 ---
+/*
+
+Bài 16:
+ - Tạo nút button "xem sản phẩm đã mua" (như mẫu kéo bên phải)
+ - Click vào sẽ lấy dữ liệu từ api ra và hiện thị các hóa đơn đã mua như mẫu 
+ - Click "Chi tiết "  hiển thị các sản phẩm của đơn hàng đấy 
+ - Click iCon trả hàng xóa đơn hàng và cập nhật lại số lượng sẩn phẩm của kho
+
+*/
 
 
 
-})

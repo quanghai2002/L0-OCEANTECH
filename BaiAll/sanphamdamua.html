@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quang Hải L0 Javascript</title>
+    <title>San phẩm đã mua</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -30,8 +30,6 @@
               <img src="./img/nike.png" alt="icon" class="header-logo__img" />
               <h3 class="header-logo__text mb-0">Nike</h3>
             </a>
-
-            <a href="./sanphamdamua.html">Xem sản phẩm đã mua</a>
 
             <button
               class="navbar-toggler"
@@ -73,7 +71,7 @@
                   >
                 </li>
 
-                <a href="./cart.html" class="nav-item btn-swit-cart">
+                <a class="nav-item btn-swit-cart" href="./cart.html">
                   <div
                     type="button"
                     class="btn btn-primary position-relative heder-btn__cart px-1"
@@ -82,6 +80,7 @@
                     <span
                       class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger heder-btn__cart--badge"
                     >
+                      10
                     </span>
                   </div>
                 </a>
@@ -90,22 +89,39 @@
           </div>
         </nav>
       </header>
-      <!-- main -->
-      <main class="main container mt-4">
-        <div
-          class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-gap-4 wrap-main-item__cart"
-        >
-          <!-- map render => data tại đây -->
+      <main class="container main-cart mt-4 px-0">
+        <!-- danh sach san pham da mua -->
+        <div class="row mt-4">
+          <div class="col">
+            <h5>Code</h5>
+          </div>
+          <div class="col">
+            <h5>Khách hàng</h5>
+          </div>
+          <div class="col"><h5>Ngày đặt hàng</h5></div>
+          <div class="col"><h5>Tổng số mặt hàng</h5></div>
+          <div class="col"><h5>Tổng tiền</h5></div>
+          <div class="col"><h5>Trả hàng</h5></div>
+        </div>
+
+        <!-- content -danh sach cac don hang -->
+        <div class="wrap-all-order">
+          <!-- render cac don hang tai day -->
+          <!-- aria-controls="collapseExample" -->
+          <!-- danh sach trống -->
+          <!-- render theo data tai day -->
+        </div>
+        <!-- back-home-page -->
+        <div class="wrap-cart-null d-none">
+          <div class="row">
+            <div class="col">
+              <a class="btn btn-outline-danger" href="./index.html">
+                <i class="bi bi-arrow-left me-2"></i>Back to Shopping</a
+              >
+            </div>
+          </div>
         </div>
       </main>
-      <!-- alert khi add cart success -->
-      <div
-        class="alert position-fixed alert-message-add-cart mb-0 d-none"
-        role="alert"
-      >
-        <p class="mb-0 text-black pt-1 alert-message-add-cart__text"></p>
-        <i class="bi bi-x-circle alert-message-add-cart__icon-close"></i>
-      </div>
     </div>
 
     <script
